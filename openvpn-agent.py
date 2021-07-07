@@ -115,7 +115,8 @@ class OpenVpnAgentX(object):
                 (2, self.agent.DisplayString()),
                 (3, self.agent.DisplayString()),
                 (4, self.agent.Unsigned32(0)),
-                (5, self.agent.Unsigned32(0))
+                (5, self.agent.Unsigned32(0)),
+                (6, self.agent.DisplayString())
             ],
             counterobj=self.agent.Unsigned32(
                 oidstr="OPENVPN-MIB::openvpnUserTableLength"
@@ -211,6 +212,10 @@ class OpenVpnAgentX(object):
                         tmpUser.setRowCell(
                             5,
                             self.agent.Unsigned32(u['recv'])
+                        )
+                        tmpUser.setRowCell(
+                            6,
+                            self.agent.DisplayString(u['date'])
                         )
                 else:
                     logger.warning("{0} is not readable".format(s['logFile']))

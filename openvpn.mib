@@ -136,7 +136,9 @@ OpenvpnUserEntry ::= SEQUENCE {
 	openvpnUserTrafficSend
 		Unsigned32,
 	openvpnUserTrafficReceived
-		Unsigned32
+		Unsigned32,
+	openvpnUserConnecttime
+		DisplayString
 }
 
 openvpnUserID  OBJECT-TYPE
@@ -178,4 +180,13 @@ openvpnUserTrafficReceived  OBJECT-TYPE
 	DESCRIPTION 
 		"VPN user traffic received"
 	::= { openvpnUserEntry 5 }
+
+openvpnUserConnecttime  OBJECT-TYPE
+	SYNTAX     DisplayString
+	MAX-ACCESS read-only
+	STATUS     current
+	DESCRIPTION 
+		"VPN user client connected time stamp"
+	::= { openvpnUserEntry 6 }
+
 END
