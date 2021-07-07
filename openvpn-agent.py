@@ -80,8 +80,7 @@ class OpenVpnAgentX(object):
                 AgentName="OpenVpnAgent",
                 MasterSocket=self.options.mastersocket,
                 PersistenceDir=self.options.persistencedir,
-                MIBFiles=[os.path.abspath(os.path.dirname(sys.argv[0])) +
-                          "/openvpn.mib"]
+                MIBFiles=["/usr/share/snmp/mibs/openvpn.mib"]
             )
         except netsnmpagent.netsnmpAgentException as e:
             logger.critical(e)
