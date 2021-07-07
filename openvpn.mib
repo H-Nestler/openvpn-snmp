@@ -8,7 +8,7 @@ IMPORTS
 		FROM SNMPv2-TC;
 
 openvpnMib MODULE-IDENTITY
-	LAST-UPDATED "202107060000Z"
+	LAST-UPDATED "202107070000Z"
 	ORGANIZATION 
 		"Open Source Project"
 	CONTACT-INFO 
@@ -16,7 +16,7 @@ openvpnMib MODULE-IDENTITY
 		http://github.com/Phhere/openvpn-snmp"
 	DESCRIPTION 
 		"A simple mib for openvpn servers"
-	REVISION     "202107060000Z"
+	REVISION     "202107070000Z"
 	DESCRIPTION 
 		"Initial Version"
 ::= { experimental 1991 }
@@ -50,7 +50,7 @@ openvpnServerEntry  OBJECT-TYPE
 
 OpenvpnServerEntry ::= SEQUENCE {
 	openvpnServerID
-		Unsigned32,
+		Integer32,
 	openvpnServerName
 		DisplayString,
 	openvpnServerUsers
@@ -62,7 +62,7 @@ OpenvpnServerEntry ::= SEQUENCE {
 }
 
 openvpnServerID  OBJECT-TYPE
-	SYNTAX     Unsigned32
+	SYNTAX     Integer32
 	MAX-ACCESS read-only
 	STATUS     current
 	DESCRIPTION 
@@ -86,7 +86,7 @@ openvpnServerUsers  OBJECT-TYPE
 	::= { openvpnServerEntry 3 }
 
 openvpnServerTrafficSend  OBJECT-TYPE
-	SYNTAX     Unsigned32
+	SYNTAX     Counter32
 	MAX-ACCESS read-only
 	STATUS     current
 	DESCRIPTION 
@@ -94,7 +94,7 @@ openvpnServerTrafficSend  OBJECT-TYPE
 	::= { openvpnServerEntry 4 }
 
 openvpnServerTrafficReceived  OBJECT-TYPE
-	SYNTAX     Unsigned32
+	SYNTAX     Counter32
 	MAX-ACCESS read-only
 	STATUS     current
 	DESCRIPTION 
@@ -128,21 +128,21 @@ openvpnUserEntry  OBJECT-TYPE
 
 OpenvpnUserEntry ::= SEQUENCE {
 	openvpnUserID
-		Unsigned32,
+		Integer32,
 	openvpnUserName
 		DisplayString,
 	openvpnUserServer
 		DisplayString,
 	openvpnUserTrafficSend
-		Unsigned32,
+		Counter32,
 	openvpnUserTrafficReceived
-		Unsigned32,
+		Counter32,
 	openvpnUserConnecttime
 		DisplayString
 }
 
 openvpnUserID  OBJECT-TYPE
-	SYNTAX     Unsigned32
+	SYNTAX     Integer32
 	MAX-ACCESS read-only
 	STATUS     current
 	DESCRIPTION 
@@ -166,7 +166,7 @@ openvpnUserServer  OBJECT-TYPE
 	::= { openvpnUserEntry 3 }
 
 openvpnUserTrafficSend  OBJECT-TYPE
-	SYNTAX     Unsigned32
+	SYNTAX     Counter32
 	MAX-ACCESS read-only
 	STATUS     current
 	DESCRIPTION 
@@ -174,7 +174,7 @@ openvpnUserTrafficSend  OBJECT-TYPE
 	::= { openvpnUserEntry 4 }
 
 openvpnUserTrafficReceived  OBJECT-TYPE
-	SYNTAX     Unsigned32
+	SYNTAX     Counter32
 	MAX-ACCESS read-only
 	STATUS     current
 	DESCRIPTION 

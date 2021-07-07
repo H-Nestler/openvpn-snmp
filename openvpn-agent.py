@@ -98,11 +98,11 @@ class OpenVpnAgentX(object):
                 self.agent.Unsigned32()
             ],
             columns=[
-                (1, self.agent.Unsigned32(0)),
+                (1, self.agent.Integer32(0)),
                 (2, self.agent.DisplayString()),
                 (3, self.agent.Unsigned32(0)),
-                (4, self.agent.Unsigned32(0)),
-                (5, self.agent.Unsigned32(0))
+                (4, self.agent.Counter32(0)),
+                (5, self.agent.Counter32(0))
             ],
             counterobj=self.agent.Unsigned32(
                 oidstr="OPENVPN-MIB::openvpnServerTableLength"
@@ -115,11 +115,11 @@ class OpenVpnAgentX(object):
                 self.agent.Unsigned32()
             ],
             columns=[
-                (1, self.agent.Unsigned32(0)),
+                (1, self.agent.Integer32(0)),
                 (2, self.agent.DisplayString()),
                 (3, self.agent.DisplayString()),
-                (4, self.agent.Unsigned32(0)),
-                (5, self.agent.Unsigned32(0)),
+                (4, self.agent.Counter32(0)),
+                (5, self.agent.Counter32(0)),
                 (6, self.agent.DisplayString())
             ],
             counterobj=self.agent.Unsigned32(
@@ -175,7 +175,7 @@ class OpenVpnAgentX(object):
                         )
                         tmpRow.setRowCell(
                             1,
-                            self.agent.Unsigned32(i+1)
+                            self.agent.Integer32(i+1)
                         )
                         tmpRow.setRowCell(
                             2,
@@ -187,11 +187,11 @@ class OpenVpnAgentX(object):
                         )
                         tmpRow.setRowCell(
                             4,
-                            self.agent.Unsigned32(serverData['send'])
+                            self.agent.Counter32(serverData['send'])
                         )
                         tmpRow.setRowCell(
                             5,
-                            self.agent.Unsigned32(serverData['recv'])
+                            self.agent.Counter32(serverData['recv'])
                         )
                         for u in serverData['users']:
                             user_index = user_index+1
@@ -200,7 +200,7 @@ class OpenVpnAgentX(object):
                             )
                             tmpUser.setRowCell(
                                 1,
-                                self.agent.Unsigned32(user_index)
+                                self.agent.Integer32(user_index)
                             )
                             tmpUser.setRowCell(
                                 2,
@@ -212,11 +212,11 @@ class OpenVpnAgentX(object):
                             )
                             tmpUser.setRowCell(
                                 4,
-                                self.agent.Unsigned32(u['send'])
+                                self.agent.Counter32(u['send'])
                             )
                             tmpUser.setRowCell(
                                 5,
-                                self.agent.Unsigned32(u['recv'])
+                                self.agent.Counter32(u['recv'])
                             )
                             tmpUser.setRowCell(
                                 6,
