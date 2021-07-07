@@ -22,7 +22,12 @@ try:
 except ImportError:  # pragma: no cover
     daemon = False
 
-logging.basicConfig(level=logging.INFO, filename="test.log")
+# Log to file
+#logging.basicConfig(level=logging.INFO, filename="test.log")
+
+# Log to stdout or syslog via systemd
+logging.basicConfig(level=logging.INFO)
+
 logger = logging.getLogger(__name__)
 
 

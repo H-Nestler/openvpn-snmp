@@ -35,6 +35,19 @@ Restart snmpd and start the python agent
 ```bash
 sudo python2 openvpn-agent.py -c /path/to/openvpn-snmp.json
 ```
+
+## Install as service at boot
+Copy openvpn-snmp.service into /usr/lib/systemd/system
+
+Copy openvpn-snmp.json into /etc
+
+Enable and start service:
+```bash
+sudo systemctl --system daemon-reload
+sudo systemctl enable openvpn-snmp.service
+sudo systemctl start openvpn-snmp.service
+```
+
 ## How to query?
 snmpwalk -v2c -c private localhost .1.3.6.1.3.1991
 

@@ -1,0 +1,21 @@
+[Unit]
+Description=Openvpn snmp AgentX Daemon
+After=network.target snmpd.target
+
+[Install]
+WantedBy=multi-user.target
+Alias=openvpn-snmp.service
+
+[Service]
+Type=simple
+User=root
+Group=root
+ExecStart=/usr/local/sbin/openvpn-agent.py -f -c /etc/openvpn-snmp.json
+
+KillMode=process
+KillSignal=SIGTERM
+
+# Restart crashed server only, on-failure would also restart,
+# for example, when config contains unknown option
+Restart=always
+RestartSec=5s
