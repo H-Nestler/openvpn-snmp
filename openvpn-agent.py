@@ -94,6 +94,7 @@ class OpenVpnAgentX(object):
                 self.agent.Unsigned32()
             ],
             columns=[
+                (1, self.agent.Unsigned32(0)),
                 (2, self.agent.DisplayString()),
                 (3, self.agent.Unsigned32(0)),
                 (4, self.agent.Unsigned32(0)),
@@ -110,6 +111,7 @@ class OpenVpnAgentX(object):
                 self.agent.Unsigned32()
             ],
             columns=[
+                (1, self.agent.Unsigned32(0)),
                 (2, self.agent.DisplayString()),
                 (3, self.agent.DisplayString()),
                 (4, self.agent.Unsigned32(0)),
@@ -155,7 +157,7 @@ class OpenVpnAgentX(object):
 
             self.snmp['serverTable'].clear()
             self.snmp['userTable'].clear()
-            user_index = 1
+            user_index = 0
             for i in range(0, len(self.serverList['servers'])):
                 s = self.serverList['servers'][i]
                 if os.access(s['logFile'], os.R_OK):
@@ -166,6 +168,10 @@ class OpenVpnAgentX(object):
                         [self.agent.Unsigned32(i)]
                     )
                     tmpRow.setRowCell(
+                            1,
+                            self.agent.Unsigned32(i+1)
+                        )
+                        tmpRow.setRowCell(
                         2,
                         self.agent.DisplayString(s['name'])
                     )
@@ -182,10 +188,15 @@ class OpenVpnAgentX(object):
                         self.agent.Unsigned32(serverData['recv'])
                     )
                     for u in serverData['users']:
+                        user_index = user_index+1
                         tmpUser = self.snmp['userTable'].addRow(
                             [self.agent.Unsigned32(user_index)]
                         )
                         tmpUser.setRowCell(
+                                1,
+                                self.agent.Unsigned32(user_index)
+                            )
+                            tmpUser.setRowCell(
                             2,
                             self.agent.DisplayString(u['name'])
                         )
@@ -201,7 +212,6 @@ class OpenVpnAgentX(object):
                             5,
                             self.agent.Unsigned32(u['recv'])
                         )
-                        user_index = user_index+1
                 else:
                     logger.warning("{0} is not readable".format(s['logFile']))
 
