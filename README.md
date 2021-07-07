@@ -6,7 +6,7 @@ This tool allows you to track your openvpn servers from snmp. You will get the t
 ## Install
 Copy openvpn.mib to you systems mib directory (usually /usr/share/snmp/mibs)
 Create a json configuration file with every server you want to track
-openvpn.json:
+openvpn-snmp.json:
 ```
 {
 	"servers": 
@@ -33,7 +33,7 @@ agentXSocket /var/run/agentx/master
 ```
 Restart snmpd and start the python agent
 ```bash
-sudo python2 openvpn-agent.py -c /path/to/openvpn.json
+sudo python2 openvpn-agent.py -c /path/to/openvpn-snmp.json
 ```
 ## How to query?
 snmpwalk -v2c -c private localhost .1.3.6.1.3.1991

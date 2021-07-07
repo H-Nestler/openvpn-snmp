@@ -54,7 +54,7 @@ class OpenVpnAgentX(object):
             "--configfile",
             dest="configfile",
             help="path of the json configuration file",
-            default="openvpn.json"
+            default="/etc/openvpn-snmp.json"
         )
         parser.add_argument(
             "-f",
