@@ -171,7 +171,7 @@ class OpenVpnAgentX(object):
                         fileContent = fh.readlines()
                         serverData = self.parse_openvpn_status_file(fileContent)
                         tmpRow = self.snmp['serverTable'].addRow(
-                            [self.agent.Unsigned32(i)]
+                            [self.agent.Unsigned32(i+1)]
                         )
                         tmpRow.setRowCell(
                             1,
