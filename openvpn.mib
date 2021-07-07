@@ -28,7 +28,7 @@ openvpnServerTableLength  OBJECT-TYPE
 	MAX-ACCESS read-only
 	STATUS     current
 	DESCRIPTION 
-		""
+		"Count of running VPN-Server tasks"
 	::= { openvpn 1 }
 
 openvpnServerTable  OBJECT-TYPE
@@ -36,7 +36,7 @@ openvpnServerTable  OBJECT-TYPE
 	MAX-ACCESS not-accessible
 	STATUS     current
 	DESCRIPTION 
-		""
+		"List of running VPN-Server task"
 	::= { openvpn 2 }
 
 openvpnServerEntry  OBJECT-TYPE
@@ -44,7 +44,7 @@ openvpnServerEntry  OBJECT-TYPE
 	MAX-ACCESS not-accessible
 	STATUS     current
 	DESCRIPTION 
-		""
+		"VPN server entry"
 	INDEX { openvpnServerID }
 	::= { openvpnServerTable 1 }
 
@@ -66,7 +66,7 @@ openvpnServerID  OBJECT-TYPE
 	MAX-ACCESS read-only
 	STATUS     current
 	DESCRIPTION 
-		""
+		"VPN server index number"
 	::= { openvpnServerEntry 1 }
 
 openvpnServerName  OBJECT-TYPE
@@ -74,7 +74,7 @@ openvpnServerName  OBJECT-TYPE
 	MAX-ACCESS read-only
 	STATUS     current
 	DESCRIPTION 
-		""
+		"VPN Server name"
 	::= { openvpnServerEntry 2 }
 
 openvpnServerUsers  OBJECT-TYPE
@@ -82,7 +82,7 @@ openvpnServerUsers  OBJECT-TYPE
 	MAX-ACCESS read-only
 	STATUS     current
 	DESCRIPTION 
-		""
+		"VPN server total connected users"
 	::= { openvpnServerEntry 3 }
 
 openvpnServerTrafficSend  OBJECT-TYPE
@@ -90,7 +90,7 @@ openvpnServerTrafficSend  OBJECT-TYPE
 	MAX-ACCESS read-only
 	STATUS     current
 	DESCRIPTION 
-		""
+		"VPN server traffic send"
 	::= { openvpnServerEntry 4 }
 
 openvpnServerTrafficReceived  OBJECT-TYPE
@@ -98,7 +98,7 @@ openvpnServerTrafficReceived  OBJECT-TYPE
 	MAX-ACCESS read-only
 	STATUS     current
 	DESCRIPTION 
-		""
+		"VPN server traffic received"
 	::= { openvpnServerEntry 5 }
 
 openvpnUserTableLength  OBJECT-TYPE
@@ -106,7 +106,7 @@ openvpnUserTableLength  OBJECT-TYPE
 	MAX-ACCESS read-only
 	STATUS     current
 	DESCRIPTION 
-		""
+		"VPN entries in table of connected users"
 	::= { openvpn 3 }
 
 openvpnUserTable  OBJECT-TYPE
@@ -114,7 +114,7 @@ openvpnUserTable  OBJECT-TYPE
 	MAX-ACCESS not-accessible
 	STATUS     current
 	DESCRIPTION 
-		""
+		"VPN table of connected users"
 	::= { openvpn 4 }
 
 openvpnUserEntry  OBJECT-TYPE
@@ -122,7 +122,7 @@ openvpnUserEntry  OBJECT-TYPE
 	MAX-ACCESS not-accessible
 	STATUS     current
 	DESCRIPTION 
-		""
+		"VPN user entry"
 	INDEX { openvpnUserName }
 	::= { openvpnUserTable 1 }
 
@@ -144,7 +144,7 @@ openvpnUserID  OBJECT-TYPE
 	MAX-ACCESS read-only
 	STATUS     current
 	DESCRIPTION 
-		""
+		"VPN user index number"
 	::= { openvpnUserEntry 1 }
 
 openvpnUserName  OBJECT-TYPE
@@ -152,7 +152,7 @@ openvpnUserName  OBJECT-TYPE
 	MAX-ACCESS read-only
 	STATUS     current
 	DESCRIPTION 
-		""
+		"VPN user client name"
 	::= { openvpnUserEntry 2 }
 
 openvpnUserServer  OBJECT-TYPE
@@ -160,7 +160,7 @@ openvpnUserServer  OBJECT-TYPE
 	MAX-ACCESS read-only
 	STATUS     current
 	DESCRIPTION 
-		""
+		"VPN server name"
 	::= { openvpnUserEntry 3 }
 
 openvpnUserTrafficSend  OBJECT-TYPE
@@ -168,7 +168,7 @@ openvpnUserTrafficSend  OBJECT-TYPE
 	MAX-ACCESS read-only
 	STATUS     current
 	DESCRIPTION 
-		""
+		"VPN user traffic send"
 	::= { openvpnUserEntry 4 }
 
 openvpnUserTrafficReceived  OBJECT-TYPE
@@ -176,6 +176,6 @@ openvpnUserTrafficReceived  OBJECT-TYPE
 	MAX-ACCESS read-only
 	STATUS     current
 	DESCRIPTION 
-		""
+		"VPN user traffic received"
 	::= { openvpnUserEntry 5 }
 END
