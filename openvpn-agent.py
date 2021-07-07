@@ -229,7 +229,7 @@ class OpenVpnAgentX(object):
         self.agent.shutdown()
 
     def parse_openvpn_status_file(self, lines):
-        regex = r'^([\w[\w.-]+),([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+:[0-9]+),([0-9]+),([0-9]+),(.*)'
+        regex = r'^(\w[\w.-]+),([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+:[0-9]+),([0-9]+),([0-9]+),(.*)'
         userlist = []
         server = {'send': 0, 'recv': 0}
         for line in lines:
