@@ -8,7 +8,7 @@ IMPORTS
 		FROM SNMPv2-TC;
 
 openvpnMib MODULE-IDENTITY
-	LAST-UPDATED "201505182006Z"
+	LAST-UPDATED "202107060000Z"
 	ORGANIZATION 
 		"Open Source Project"
 	CONTACT-INFO 
@@ -16,7 +16,7 @@ openvpnMib MODULE-IDENTITY
 		http://github.com/Phhere/openvpn-snmp"
 	DESCRIPTION 
 		"A simple mib for openvpn servers"
-	REVISION     "201505220000Z"
+	REVISION     "202107060000Z"
 	DESCRIPTION 
 		"Initial Version"
 ::= { experimental 1991 }
@@ -127,6 +127,8 @@ openvpnUserEntry  OBJECT-TYPE
 	::= { openvpnUserTable 1 }
 
 OpenvpnUserEntry ::= SEQUENCE {
+	openvpnUserID
+		Unsigned32,
 	openvpnUserName
 		DisplayString,
 	openvpnUserServer
@@ -137,15 +139,15 @@ OpenvpnUserEntry ::= SEQUENCE {
 		Unsigned32
 }
 
-openvpnUserName  OBJECT-TYPE
-	SYNTAX     DisplayString
+openvpnUserID  OBJECT-TYPE
+	SYNTAX     Unsigned32
 	MAX-ACCESS read-only
 	STATUS     current
 	DESCRIPTION 
 		""
 	::= { openvpnUserEntry 1 }
 
-openvpnUserServer  OBJECT-TYPE
+openvpnUserName  OBJECT-TYPE
 	SYNTAX     DisplayString
 	MAX-ACCESS read-only
 	STATUS     current
@@ -153,13 +155,21 @@ openvpnUserServer  OBJECT-TYPE
 		""
 	::= { openvpnUserEntry 2 }
 
+openvpnUserServer  OBJECT-TYPE
+	SYNTAX     DisplayString
+	MAX-ACCESS read-only
+	STATUS     current
+	DESCRIPTION 
+		""
+	::= { openvpnUserEntry 3 }
+
 openvpnUserTrafficSend  OBJECT-TYPE
 	SYNTAX     Unsigned32
 	MAX-ACCESS read-only
 	STATUS     current
 	DESCRIPTION 
 		""
-	::= { openvpnUserEntry 3 }
+	::= { openvpnUserEntry 4 }
 
 openvpnUserTrafficReceived  OBJECT-TYPE
 	SYNTAX     Unsigned32
@@ -167,5 +177,5 @@ openvpnUserTrafficReceived  OBJECT-TYPE
 	STATUS     current
 	DESCRIPTION 
 		""
-	::= { openvpnUserEntry 4 }
+	::= { openvpnUserEntry 5 }
 END
