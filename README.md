@@ -13,10 +13,12 @@ openvpn.json:
 	[
 		{
 			"name": "Server 1",
+			"pidfile": "/var/run/openvpn.pid",
 			"logFile": "/path/to/openvpn-status.log"
 		},
 		{
 			"name": "Server 2",
+			"pidfile": "/var/run/openvpn-2.pid",
 			"logFile": "/path/to/openvpn-status-2.log"
 		}
 	]

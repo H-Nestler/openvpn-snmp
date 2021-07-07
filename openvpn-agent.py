@@ -161,64 +161,65 @@ class OpenVpnAgentX(object):
             user_index = 0
             for i in range(0, len(self.serverList['servers'])):
                 s = self.serverList['servers'][i]
-                if os.access(s['logFile'], os.R_OK):
-                    fh = open(s['logFile'], "r")
-                    fileContent = fh.readlines()
-                    serverData = self.parse_openvpn_status_file(fileContent)
-                    tmpRow = self.snmp['serverTable'].addRow(
-                        [self.agent.Unsigned32(i)]
-                    )
-                    tmpRow.setRowCell(
+                if os.path.exists(s['pidfile']):
+                    if os.access(s['logFile'], os.R_OK):
+                        fh = open(s['logFile'], "r")
+                        fileContent = fh.readlines()
+                        serverData = self.parse_openvpn_status_file(fileContent)
+                        tmpRow = self.snmp['serverTable'].addRow(
+                            [self.agent.Unsigned32(i)]
+                        )
+                        tmpRow.setRowCell(
                             1,
                             self.agent.Unsigned32(i+1)
                         )
                         tmpRow.setRowCell(
-                        2,
-                        self.agent.DisplayString(s['name'])
-                    )
-                    tmpRow.setRowCell(
-                        3,
-                        self.agent.Unsigned32(len(serverData['users']))
-                    )
-                    tmpRow.setRowCell(
-                        4,
-                        self.agent.Unsigned32(serverData['send'])
-                    )
-                    tmpRow.setRowCell(
-                        5,
-                        self.agent.Unsigned32(serverData['recv'])
-                    )
-                    for u in serverData['users']:
-                        user_index = user_index+1
-                        tmpUser = self.snmp['userTable'].addRow(
-                            [self.agent.Unsigned32(user_index)]
+                            2,
+                            self.agent.DisplayString(s['name'])
                         )
-                        tmpUser.setRowCell(
+                        tmpRow.setRowCell(
+                            3,
+                            self.agent.Unsigned32(len(serverData['users']))
+                        )
+                        tmpRow.setRowCell(
+                            4,
+                            self.agent.Unsigned32(serverData['send'])
+                        )
+                        tmpRow.setRowCell(
+                            5,
+                            self.agent.Unsigned32(serverData['recv'])
+                        )
+                        for u in serverData['users']:
+                            user_index = user_index+1
+                            tmpUser = self.snmp['userTable'].addRow(
+                                [self.agent.Unsigned32(user_index)]
+                            )
+                            tmpUser.setRowCell(
                                 1,
                                 self.agent.Unsigned32(user_index)
                             )
                             tmpUser.setRowCell(
-                            2,
-                            self.agent.DisplayString(u['name'])
-                        )
-                        tmpUser.setRowCell(
-                            3,
-                            self.agent.DisplayString(s['name'])
-                        )
-                        tmpUser.setRowCell(
-                            4,
-                            self.agent.Unsigned32(u['send'])
-                        )
-                        tmpUser.setRowCell(
-                            5,
-                            self.agent.Unsigned32(u['recv'])
-                        )
-                        tmpUser.setRowCell(
-                            6,
-                            self.agent.DisplayString(u['date'])
-                        )
-                else:
-                    logger.warning("{0} is not readable".format(s['logFile']))
+                                2,
+                                self.agent.DisplayString(u['name'])
+                            )
+                            tmpUser.setRowCell(
+                                3,
+                                self.agent.DisplayString(s['name'])
+                            )
+                            tmpUser.setRowCell(
+                                4,
+                                self.agent.Unsigned32(u['send'])
+                            )
+                            tmpUser.setRowCell(
+                                5,
+                                self.agent.Unsigned32(u['recv'])
+                            )
+                            tmpUser.setRowCell(
+                                6,
+                                self.agent.DisplayString(u['date'])
+                            )
+                    else:
+                        logger.warning("{0} is not readable".format(s['logFile']))
 
         logger.info("Terminating.")
         self.agent.shutdown()
