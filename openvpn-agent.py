@@ -23,7 +23,7 @@ except ImportError:  # pragma: no cover
     daemon = False
 
 # Log to file
-#logging.basicConfig(level=logging.INFO, filename="test.log")
+#logging.basicConfig(level=logging.INFO, filename="/var/log/openvpn-agent.log")
 
 # Log to stdout or syslog via systemd
 logging.basicConfig(level=logging.INFO)
@@ -132,7 +132,7 @@ class OpenVpnAgentX(object):
             logger.critical(e)
             sys.exit(1)
 
-        logger.info("AgentX connection to snmpd established.")
+        logger.info("OpenVpnAgent connection to snmpd established.")
 
     def _signalHandler(signum, frame):
         self._loop = False
